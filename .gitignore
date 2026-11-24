@@ -1,0 +1,30 @@
+# 依赖
+node_modules/
+
+# 前端构建产物
+dist/
+
+# Rust / Tauri 构建产物
+src-tauri/target/
+src-tauri/gen/
+
+# 日志与本地环境
+*.log
+.DS_Store
+.env
+.env.local
+/-l422306
+
+# 本地测试截图与临时分享包
+.screenshots/
+.trae-html-share-packages/
+
+# 内部工作文档（不随公开仓库发布）
+HAVEN_MVP_RELEASE_BLOCKERS.md
+HAVEN_PROJECT_STATUS.md
+.trae/documents/
+
+# 编辑器
+.vscode/*
+!.vscode/extensions.json
+.idea/

@@ -1,0 +1,40 @@
+[package]
+name = "haven"
+version = "0.1.0"
+description = "Haven - 离线优先的个人文件加密与隐私管理桌面应用"
+authors = ["Haven"]
+license = ""
+repository = ""
+edition = "2024"
+rust-version = "1.90"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "haven_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.7.6", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+log = "0.4"
+tauri = { version = "2.12.7", features = [] }
+tauri-plugin-log = "2"
+argon2 = { version = "0.6.0", features = ["zeroize"] }
+chacha20poly1305 = { version = "0.11.0", features = ["zeroize"] }
+aead-stream = { version = "0.6.0", features = ["alloc"] }
+hkdf = "0.12.4"
+sha2 = "0.10.9"
+# 库级文件锁：阻止两个 Haven 实例同时改写加密索引。
+libc = "0.2"
+zeroize = { version = "1.9.2", features = ["derive"] }
+base64 = "0.23.1"
+tauri-plugin-dialog = "2.8.4"
+# FR-39：仅在 Rust 端解码 JPG/PNG 并生成内存缩略图。
+image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
+
+[dev-dependencies]
+tempfile = "3.27.0"
