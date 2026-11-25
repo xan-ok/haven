@@ -1,6 +1,6 @@
 [package]
 name = "haven"
-version = "0.1.1"
+version = "0.1.2"
 description = "Haven - 离线优先的个人文件加密与隐私管理桌面应用"
 authors = ["Haven"]
 license = ""

@@ -2,10 +2,11 @@
 
 离线优先的个人文件加密与隐私管理桌面应用。数据保存在本机，不上传、不同步、无需联网。
 
-> 当前为 **Haven 0.1.1 内部测试版**，仅提供 **macOS Apple Silicon（arm64）** 安装包。
-> 当前安装包**未使用 Developer ID 签名，也未经过 Apple 公证**，Gatekeeper 可能拒绝运行，详见[发布说明](docs/RELEASE-NOTES-0.1.1.md)。
+> 当前为 **Haven 0.1.2 内部测试版**，仅提供 **macOS Apple Silicon（arm64）** 安装包。
+> 当前安装包**未使用 Developer ID 签名，也未经过 Apple 公证**，Gatekeeper 可能拒绝运行，详见[发布说明](docs/RELEASE-NOTES-0.1.2.md)。
 
 - 产品需求文档：[docs/Haven-PRD-产品需求分析-v0.2.md](docs/Haven-PRD-产品需求分析-v0.2.md)
+- 0.1.2 发布说明：[docs/RELEASE-NOTES-0.1.2.md](docs/RELEASE-NOTES-0.1.2.md)
 - 0.1.1 发布说明：[docs/RELEASE-NOTES-0.1.1.md](docs/RELEASE-NOTES-0.1.1.md)
 - 0.1.0 发布说明：[docs/RELEASE-NOTES-0.1.0.md](docs/RELEASE-NOTES-0.1.0.md)
 - 开发约束：[AGENTS.md](AGENTS.md)
@@ -35,8 +36,8 @@
 当前只提供 macOS Apple Silicon（arm64）DMG：
 
 ```
-Haven_0.1.1_aarch64.dmg
-SHA-256: c1d5b55a934bc1242992979a5dfc193fab6cb75f137113e456878ead8177e782
+Haven_0.1.2_aarch64.dmg
+SHA-256: 9ab7698616afbdeb1476df0c2668ccb89a9658703554a8e7b4c2bbd8a6745637
 ```
 
 安装步骤：
@@ -194,6 +195,9 @@ haven/
 
 ## 当前状态
 
+0.1.2 为内部测试版，调整已解锁界面布局：文件列表占满剩余窗口高度，顶部信息压缩为紧凑单行工具栏，
+窗口较小时内容可正常滚动；验证记录见
+[docs/acceptance/20261125-layout-fix/](docs/acceptance/20261125-layout-fix/)。
 0.1.1 为内部测试版，在 0.1.0 基础上修复了「保险库不可用」页无法创建新保险库的问题，
 验证记录见 [docs/acceptance/20261125-fix-unavailable-create/](docs/acceptance/20261125-fix-unavailable-create/)。
 0.1.0 已完成最终安装包冒烟测试（12 项全部通过），报告见

@@ -173,6 +173,7 @@ onBeforeUnmount(() => {
 
 <template>
   <main class="haven-screen">
+    <div class="haven-screen__content">
     <section v-if="view === 'loading'" class="haven-card">
       <p class="haven-quiet">正在检查保险库…</p>
     </section>
@@ -289,12 +290,13 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <footer class="haven-footer">
-      <span>v0.1.1</span>
+    <footer v-if="view !== 'unlocked'" class="haven-footer">
+      <span>v0.1.2</span>
       <span class="haven-dot" aria-hidden="true">·</span>
       <span>数据保存在本机</span>
       <span class="haven-dot" aria-hidden="true">·</span>
       <span>无需联网</span>
     </footer>
+    </div>
   </main>
 </template>

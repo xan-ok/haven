@@ -1526,16 +1526,17 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="haven-card haven-card--wide" aria-labelledby="vault-title">
+  <section class="haven-card haven-card--wide haven-card--vault" aria-labelledby="vault-title">
     <div class="haven-vault__head">
-      <div>
-        <p class="haven-eyebrow">我的保险库</p>
-        <h1 id="vault-title" class="haven-section-title">{{ vaultName }}</h1>
-      </div>
+      <h1
+        id="vault-title"
+        class="haven-section-title"
+        :title="vaultPath ? `保险库位置：${vaultPath}` : undefined"
+      >
+        {{ vaultName }}
+      </h1>
       <span class="haven-vault__status">已解锁</span>
     </div>
-
-    <p v-if="vaultPath" class="haven-path">{{ vaultPath }}</p>
 
     <div v-if="dropState.active" class="haven-dropzone" role="status" aria-live="polite">
       <div class="haven-dropzone__panel">
@@ -1716,10 +1717,6 @@ onBeforeUnmount(() => {
       </p>
 
       <div class="haven-folders" aria-label="文件夹">
-        <div class="haven-folders__head">
-          <span class="haven-folders__title">文件夹</span>
-          <n-button size="tiny" quaternary @click="openCreateFolder">新建文件夹</n-button>
-        </div>
         <div class="haven-folders__list">
           <button
             type="button"
@@ -1779,6 +1776,14 @@ onBeforeUnmount(() => {
               删除
             </button>
           </div>
+          <button
+            type="button"
+            class="haven-folder haven-folder--create"
+            aria-label="新建文件夹"
+            @click="openCreateFolder"
+          >
+            <span class="haven-folder__name">+ 新建文件夹</span>
+          </button>
         </div>
       </div>
 
@@ -1847,12 +1852,13 @@ onBeforeUnmount(() => {
         </div>
       </div>
 
-      <p class="haven-result-count" aria-live="polite">
-        全部文件 {{ browseState.total }} 个，当前筛选出
-        {{ browseState.matched.length }} 个。
-      </p>
+      <div class="haven-list-status">
+        <p class="haven-result-count" aria-live="polite">
+          全部文件 {{ browseState.total }} 个，当前筛选出
+          {{ browseState.matched.length }} 个。
+        </p>
 
-      <div v-if="browseState.visible.length > 0" class="haven-selection">
+        <div v-if="browseState.visible.length > 0" class="haven-selection">
         <n-button
           size="tiny"
           quaternary
@@ -1909,6 +1915,7 @@ onBeforeUnmount(() => {
         >
           批量删除
         </n-button>
+        </div>
       </div>
 
       <div v-if="browseState.matched.length === 0" class="haven-empty haven-empty--compact">
@@ -2180,7 +2187,13 @@ onBeforeUnmount(() => {
 
     <div class="haven-actions haven-actions--start">
       <div class="haven-actions__row">
-        <n-button type="primary" size="large" :loading="importing" @click="handleImport">
+        <n-button
+          type="primary"
+          size="large"
+          :loading="importing"
+          title="导入会逐块加密写入保险库；原文件不会被删除。"
+          @click="handleImport"
+        >
           导入文件
         </n-button>
         <n-button
@@ -2221,7 +2234,6 @@ onBeforeUnmount(() => {
         </n-button>
         <n-button quaternary size="large" @click="handleLock">锁定保险库</n-button>
       </div>
-      <p class="haven-hint">导入会逐块加密写入保险库；原文件不会被删除。</p>
     </div>
 
     <Teleport to="body">

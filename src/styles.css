@@ -50,7 +50,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 28px 32px;
   overflow-y: auto;
   /* 极淡的暖色光晕，避免大面积纯色带来的冷感 */
@@ -59,6 +59,15 @@ button {
     rgba(255, 253, 248, 0.9),
     rgba(255, 253, 248, 0) 70%
   );
+}
+
+/* 内容较矮时整体垂直居中；内容超出窗口时自动贴顶，保证可以滚动查看 */
+.haven-screen__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-block: auto;
 }
 
 .haven-card {
@@ -76,6 +85,25 @@ button {
 
 .haven-card--wide {
   max-width: 620px;
+}
+
+/* 已解锁面板：占满窗口高度，列表占用剩余空间 */
+.haven-card--vault {
+  display: flex;
+  flex-direction: column;
+  max-width: 880px;
+  height: calc(100vh - 56px);
+  padding: 18px 26px 16px;
+  overflow: hidden;
+}
+
+.haven-card--vault .haven-section-title {
+  font-size: 24px;
+  letter-spacing: 0.04em;
+}
+
+.haven-card--vault > * {
+  flex: none;
 }
 
 .haven-mark {
@@ -288,12 +316,12 @@ button {
 /* ---------- 路径与空状态 ---------- */
 
 .haven-path {
-  margin-top: 12px;
-  padding: 8px 10px;
+  margin-top: 8px;
+  padding: 5px 10px;
   border-radius: 10px;
   background: rgba(140, 124, 106, 0.06);
-  font-size: 11.5px;
-  line-height: 1.6;
+  font-size: 11px;
+  line-height: 1.5;
   color: var(--haven-ink-faint);
   word-break: break-all;
   user-select: text;
@@ -352,12 +380,13 @@ button {
 
 .haven-files {
   list-style: none;
-  margin: 20px 0 0;
+  margin: 14px 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 280px;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
 }
 
@@ -468,8 +497,8 @@ button {
 }
 
 .haven-import-result {
-  margin-top: 18px;
-  padding: 12px 14px;
+  margin-top: 12px;
+  padding: 8px 12px;
   border: 1px solid var(--haven-line);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.42);
@@ -492,7 +521,13 @@ button {
 }
 
 .haven-actions--start {
+  margin-top: 10px;
+  padding-top: 8px;
   text-align: left;
+}
+
+.haven-actions--start .haven-hint {
+  margin-top: 4px;
 }
 
 .haven-actions--start .haven-actions__row {
@@ -635,7 +670,7 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 10px;
   flex-wrap: wrap;
 }
 
@@ -646,11 +681,11 @@ button {
 
 .haven-toolbar__select {
   flex: 0 0 auto;
-  width: 124px;
+  width: 108px;
 }
 
 .haven-toolbar__select--sort {
-  width: 168px;
+  width: 140px;
 }
 
 /* ---------- 列表 / 网格视图切换（FR-39） ---------- */
@@ -685,8 +720,13 @@ button {
 .haven-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  grid-auto-rows: max-content;
   gap: 12px;
   margin-top: 10px;
+  flex: 1 1 auto;
+  min-height: 0;
+  align-content: start;
+  overflow-y: auto;
 }
 
 .haven-grid-card {
@@ -871,7 +911,7 @@ button {
 /* ---------- 一级文件夹（FR-42） ---------- */
 
 .haven-folders {
-  margin: 14px 2px 0;
+  margin: 8px 2px 0;
 }
 
 .haven-folders__head {
@@ -879,7 +919,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .haven-folders__title {
@@ -905,6 +945,17 @@ button {
   color: var(--haven-ink);
   font: inherit;
   font-size: 12px;
+}
+
+.haven-folder--create {
+  border-style: dashed;
+  background: transparent;
+  color: var(--haven-ink-faint);
+}
+
+.haven-folder--create:hover {
+  color: var(--haven-accent-deep);
+  border-color: rgba(126, 143, 124, 0.4);
 }
 
 .haven-folder.is-active {
@@ -978,8 +1029,27 @@ button {
   margin-top: 12px;
 }
 
+.haven-list-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.haven-list-status .haven-result-count {
+  margin: 0;
+  flex: none;
+}
+
+.haven-list-status .haven-selection {
+  flex: 1 1 auto;
+  min-width: 320px;
+  margin: 0;
+}
+
 .haven-result-count {
-  margin: 10px 2px 0;
+  margin: 6px 2px 0;
   font-size: 12px;
   color: var(--haven-ink-faint);
   font-variant-numeric: tabular-nums;
@@ -989,8 +1059,8 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 8px 0 2px;
-  padding: 6px 10px;
+  margin: 6px 0 0;
+  padding: 4px 8px;
   border: 1px solid var(--haven-line);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.32);
