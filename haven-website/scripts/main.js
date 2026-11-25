@@ -167,6 +167,7 @@
       "dl.build": "2026-11-25T15:34:52 CST",
       "dl.tag": "v0.1.3",
       "dl.commit": "c4a8e3aa",
+      "dl.btn.dmg": "下载 DMG（arm64，6.11 MiB）",
       "dl.btn.github": "GitHub Releases",
       "dl.btn.repo": "GitHub 仓库",
       "dl.btn.notes": "Release Notes",
@@ -223,8 +224,8 @@
       "footer.community.pr": "Pull Requests",
       "footer.legal.t": "更多",
       "footer.legal.download": "下载与版本状态",
-      "footer.legal.license": "开源许可证（待定）",
-      "footer.copy": "© 2026 Haven · 0.1.3 内部测试 · 源代码公开，欢迎参与"
+      "footer.legal.license": "许可证（待定）",
+      "footer.copy": "© 2026 Haven · v0.1.3 正式发布 · 源代码公开，欢迎参与"
     },
 
     en: {
@@ -383,6 +384,7 @@
       "dl.build": "2026-11-25T15:34:52 CST",
       "dl.tag": "v0.1.3",
       "dl.commit": "c4a8e3aa",
+      "dl.btn.dmg": "Download DMG (arm64, 6.11 MiB)",
       "dl.btn.github": "GitHub Releases",
       "dl.btn.repo": "GitHub repository",
       "dl.btn.notes": "Release Notes",
@@ -425,7 +427,22 @@
       "faq.q11": "How do I backup and restore?",
       "faq.a11": "While unlocked, click 'Backup Vault'. Haven copies the entire encrypted vault to your chosen directory — the backup stays encrypted. To restore, pick the backup directory → enter the master password for that backup → choose a new restore location. Haven creates a new vault; it never overwrites an existing one.",
       "faq.q12": "How do I contribute?",
-      "faq.a12": "Read the project README and development constraints → browse or discuss in GitHub Issues → fork the repo and create a branch → open a Pull Request. See the 'Open Source' section of this site."
+      "faq.a12": "Read the project README and development constraints → browse or discuss in GitHub Issues → fork the repo and create a branch → open a Pull Request. See the 'Open Source' section of this site.",
+
+      "footer.about.t": "About Haven",
+      "footer.about.b": "Offline-first personal file encryption and privacy desktop app. Data stays on this machine — no upload, no sync, no network required.",
+      "footer.project.t": "Project",
+      "footer.project.readme": "README",
+      "footer.project.releases": "Release notes",
+      "footer.project.agents": "Development rules (AGENTS.md)",
+      "footer.community.t": "Community",
+      "footer.community.gh": "GitHub repository",
+      "footer.community.issues": "Issues",
+      "footer.community.pr": "Pull Requests",
+      "footer.legal.t": "More",
+      "footer.legal.download": "Download and version status",
+      "footer.legal.license": "License (to be determined)",
+      "footer.copy": "© 2026 Haven · v0.1.3 stable · Source is public — contributions welcome"
     }
   };
 
