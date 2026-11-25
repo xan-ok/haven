@@ -237,14 +237,16 @@ onBeforeUnmount(() => {
       <p class="haven-lead">{{ unavailableMessage }}</p>
       <p v-if="vaultPath" class="haven-path">{{ vaultPath }}</p>
       <p class="haven-help" style="margin-top: 14px">
-        如果保险库位于外置磁盘，请先连接磁盘再重试。Haven 不会自动创建新的保险库替代原位置。
+        如果保险库位于外置磁盘，请先连接磁盘再重试。Haven 不会自动创建新的保险库替代原位置；
+        如果原数据已丢失，可以创建一个新的保险库。
       </p>
       <div class="haven-actions">
         <div class="haven-actions__row">
+          <n-button type="primary" size="large" @click="startCreate">创建新保险库</n-button>
           <n-button quaternary size="large" :loading="opening" @click="handleOpenExisting">
             重新选择位置
           </n-button>
-          <n-button type="primary" size="large" @click="refreshStatus">重试</n-button>
+          <n-button size="large" @click="refreshStatus">重试</n-button>
         </div>
       </div>
     </section>
@@ -288,7 +290,7 @@ onBeforeUnmount(() => {
     </section>
 
     <footer class="haven-footer">
-      <span>v0.1.0</span>
+      <span>v0.1.1</span>
       <span class="haven-dot" aria-hidden="true">·</span>
       <span>数据保存在本机</span>
       <span class="haven-dot" aria-hidden="true">·</span>
