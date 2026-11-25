@@ -4,6 +4,7 @@ import { NButton, useMessage } from "naive-ui";
 import CreateVaultPanel from "../components/CreateVaultPanel.vue";
 import UnlockPanel from "../components/UnlockPanel.vue";
 import VaultPanel from "../components/VaultPanel.vue";
+import ThemeCenter from "../theme/ThemeCenter.vue";
 import {
   chooseDirectory,
   getVaultStatus,
@@ -29,6 +30,7 @@ const view = ref("loading");
 const status = ref(null);
 const unavailableMessage = ref("");
 const opening = ref(false);
+const themeCenterOpen = ref(false);
 
 const vaultName = computed(() => status.value?.vaultName || "我的保险库");
 const vaultPath = computed(() => status.value?.vaultPath || "");
@@ -173,6 +175,26 @@ onBeforeUnmount(() => {
 
 <template>
   <main class="haven-screen">
+    <button
+      v-if="view !== 'unlocked'"
+      type="button"
+      class="haven-appearance"
+      @click="themeCenterOpen = true"
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 3a9 9 0 1 0 0 18c1.2 0 2-.8 2-1.8 0-.8-.5-1.3-.5-2.1 0-.9.7-1.6 1.7-1.6H17a4 4 0 0 0 4-4C21 6.7 17 3 12 3Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+        <circle cx="8" cy="9.5" r="1.2" fill="currentColor" />
+        <circle cx="12" cy="7.5" r="1.2" fill="currentColor" />
+        <circle cx="16" cy="9.5" r="1.2" fill="currentColor" />
+      </svg>
+      外观
+    </button>
+
     <div class="haven-screen__content">
     <section v-if="view === 'loading'" class="haven-card">
       <p class="haven-quiet">正在检查保险库…</p>
@@ -226,6 +248,7 @@ onBeforeUnmount(() => {
       :vault-path="vaultPath"
       @lock="handleLock"
       @disconnected="handleDisconnected"
+      @appearance="themeCenterOpen = true"
     />
 
     <section
@@ -291,12 +314,14 @@ onBeforeUnmount(() => {
     </section>
 
     <footer v-if="view !== 'unlocked'" class="haven-footer">
-      <span>v0.1.2</span>
+      <span>v0.1.3</span>
       <span class="haven-dot" aria-hidden="true">·</span>
       <span>数据保存在本机</span>
       <span class="haven-dot" aria-hidden="true">·</span>
       <span>无需联网</span>
     </footer>
     </div>
+
+    <ThemeCenter v-model:show="themeCenterOpen" />
   </main>
 </template>

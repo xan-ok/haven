@@ -2,10 +2,11 @@
 
 离线优先的个人文件加密与隐私管理桌面应用。数据保存在本机，不上传、不同步、无需联网。
 
-> 当前为 **Haven 0.1.2 内部测试版**，仅提供 **macOS Apple Silicon（arm64）** 安装包。
-> 当前安装包**未使用 Developer ID 签名，也未经过 Apple 公证**，Gatekeeper 可能拒绝运行，详见[发布说明](docs/RELEASE-NOTES-0.1.2.md)。
+> 当前为 **Haven 0.1.3 内部测试版**，仅提供 **macOS Apple Silicon（arm64）** 安装包。
+> 当前安装包**未使用 Developer ID 签名，也未经过 Apple 公证**，Gatekeeper 可能拒绝运行，详见[发布说明](docs/RELEASE-NOTES-0.1.3.md)。
 
 - 产品需求文档：[docs/Haven-PRD-产品需求分析-v0.2.md](docs/Haven-PRD-产品需求分析-v0.2.md)
+- 0.1.3 发布说明：[docs/RELEASE-NOTES-0.1.3.md](docs/RELEASE-NOTES-0.1.3.md)
 - 0.1.2 发布说明：[docs/RELEASE-NOTES-0.1.2.md](docs/RELEASE-NOTES-0.1.2.md)
 - 0.1.1 发布说明：[docs/RELEASE-NOTES-0.1.1.md](docs/RELEASE-NOTES-0.1.1.md)
 - 0.1.0 发布说明：[docs/RELEASE-NOTES-0.1.0.md](docs/RELEASE-NOTES-0.1.0.md)
@@ -33,7 +34,7 @@
 
 ## 下载与安装（内部测试）
 
-当前只提供 macOS Apple Silicon（arm64）DMG：
+0.1.3 安装包待构建发布；当前可用的最新安装包为 0.1.2（macOS Apple Silicon arm64）：
 
 ```
 Haven_0.1.2_aarch64.dmg
@@ -195,6 +196,9 @@ haven/
 
 ## 当前状态
 
+0.1.3 为内部测试版，新增「主题中心」：6 套内置主题即时切换，支持导入 / 预览 / 应用 / 删除自定义主题，
+主题与保险库完全隔离，损坏自动回退；验证记录见
+[docs/acceptance/20261125-theme-center/](docs/acceptance/20261125-theme-center/)。
 0.1.2 为内部测试版，调整已解锁界面布局：文件列表占满剩余窗口高度，顶部信息压缩为紧凑单行工具栏，
 窗口较小时内容可正常滚动；验证记录见
 [docs/acceptance/20261125-layout-fix/](docs/acceptance/20261125-layout-fix/)。

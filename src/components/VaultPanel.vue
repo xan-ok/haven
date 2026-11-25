@@ -75,7 +75,7 @@ defineProps({
   vaultName: { type: String, default: "我的保险库" },
   vaultPath: { type: String, default: "" },
 });
-const emit = defineEmits(["lock", "disconnected"]);
+const emit = defineEmits(["lock", "disconnected", "appearance"]);
 
 const PAGE_SIZE = 60;
 const TYPE_OPTIONS = [
@@ -1535,7 +1535,16 @@ onBeforeUnmount(() => {
       >
         {{ vaultName }}
       </h1>
-      <span class="haven-vault__status">已解锁</span>
+      <div class="haven-vault__head-actions">
+        <button
+          type="button"
+          class="haven-link-button"
+          @click="emit('appearance')"
+        >
+          外观
+        </button>
+        <span class="haven-vault__status">已解锁</span>
+      </div>
     </div>
 
     <div v-if="dropState.active" class="haven-dropzone" role="status" aria-live="polite">

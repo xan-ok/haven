@@ -1,12 +1,15 @@
 <script setup>
-import { NConfigProvider, NMessageProvider, zhCN, dateZhCN } from "naive-ui";
+import { NConfigProvider, NMessageProvider, darkTheme, dateZhCN, zhCN } from "naive-ui";
 import HomeView from "./views/HomeView.vue";
-import { themeOverrides } from "./theme.js";
+import { initTheme, isDarkTheme, naiveOverrides } from "./theme/manager.js";
+
+initTheme();
 </script>
 
 <template>
   <n-config-provider
-    :theme-overrides="themeOverrides"
+    :theme="isDarkTheme ? darkTheme : null"
+    :theme-overrides="naiveOverrides"
     :locale="zhCN"
     :date-locale="dateZhCN"
   >

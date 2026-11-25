@@ -4,6 +4,7 @@ mod export_txn;
 mod file_store;
 mod restore;
 mod session;
+mod theme_store;
 mod vault;
 
 use std::path::PathBuf;
@@ -16,6 +17,7 @@ use file_store::{
 use restore::RestoreSummary;
 use session::{AppState, ExitPhase, VaultStatus};
 use tauri::{Emitter, Manager};
+use theme_store::ThemeError;
 use vault::VaultError;
 
 const IMPORT_PROGRESS_EVENT: &str = "haven://import-progress";
@@ -333,6 +335,54 @@ async fn export_file(
     .map_err(|_| VaultError::internal())?
 }
 
+/// 主题只存放在应用配置目录，与保险库数据完全隔离。
+fn theme_config_dir(app: &tauri::AppHandle) -> Result<PathBuf, ThemeError> {
+    app.path().app_config_dir().map_err(|_| ThemeError::disk())
+}
+
+#[tauri::command]
+fn theme_list_user(app: tauri::AppHandle) -> Result<Vec<theme_store::ThemeFile>, ThemeError> {
+    theme_store::list_user_themes(&theme_config_dir(&app)?)
+}
+
+#[tauri::command]
+fn theme_read_user(
+    app: tauri::AppHandle,
+    id: String,
+) -> Result<theme_store::ThemeFile, ThemeError> {
+    theme_store::read_user_theme(&theme_config_dir(&app)?, &id)
+}
+
+/// 导入前在 Rust 侧完成全部校验；写入的是规范化后的 JSON，不落原始文件。
+#[tauri::command]
+async fn theme_import_file(
+    app: tauri::AppHandle,
+    path: String,
+    overwrite: bool,
+) -> Result<theme_store::ThemeFile, ThemeError> {
+    let config_dir = theme_config_dir(&app)?;
+    tauri::async_runtime::spawn_blocking(move || {
+        theme_store::import_theme_file(&config_dir, PathBuf::from(path).as_path(), overwrite)
+    })
+    .await
+    .map_err(|_| ThemeError::disk())?
+}
+
+#[tauri::command]
+fn theme_delete_user(app: tauri::AppHandle, id: String) -> Result<(), ThemeError> {
+    theme_store::delete_user_theme(&theme_config_dir(&app)?, &id)
+}
+
+#[tauri::command]
+fn theme_get_active(app: tauri::AppHandle) -> Result<Option<String>, ThemeError> {
+    Ok(theme_store::get_active_theme(&theme_config_dir(&app)?))
+}
+
+#[tauri::command]
+fn theme_set_active(app: tauri::AppHandle, id: Option<String>) -> Result<(), ThemeError> {
+    theme_store::set_active_theme(&theme_config_dir(&app)?, id.as_deref())
+}
+
 /// 安装显式菜单：macOS 默认菜单的“退出”项会直接终止进程，绕过退出状态机。
 /// 这里用自定义菜单项接管 ⌘Q，使其与关闭窗口共用同一套幂等退出流程。
 fn install_menu(app: &tauri::AppHandle) -> tauri::Result<()> {
@@ -430,7 +480,13 @@ pub fn run() {
             create_folder,
             rename_folder,
             delete_folder,
-            move_files
+            move_files,
+            theme_list_user,
+            theme_read_user,
+            theme_import_file,
+            theme_delete_user,
+            theme_get_active,
+            theme_set_active
         ])
         .on_window_event(|window, event| {
             // PRD Q-05：关闭主窗口即退出应用进程。

@@ -44,9 +44,9 @@ const strengthWidth = computed(() => {
 const strengthColor = computed(
   () =>
     ({
-      weak: "#c08a72",
-      medium: "#c8a96a",
-      strong: "#7e8f7c",
+      weak: "var(--haven-danger)",
+      medium: "var(--haven-warning)",
+      strong: "var(--haven-accent)",
     })[strength.value.level] || "transparent"
 );
 
