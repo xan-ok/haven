@@ -34,6 +34,21 @@ Not implemented or not supported:
 - Vaults on network volumes
 - Master password change or recovery, trash bin, cloud sync
 
+## Platform support backlog
+
+The platforms below are **not developed yet**. This is a backlog record only: work has not started, and no timeline is promised.
+
+| Platform | Status | Notes |
+|---|---|---|
+| macOS Apple Silicon (arm64) | ✅ Supported | Stable release in v0.1.3; the only usable platform today |
+| macOS Intel (x86_64) / Universal | ⏳ Planned | Needs verification on Intel hardware or a cross-compilation setup |
+| Windows (x86_64) | ⏳ Planned | Needs Windows-specific path, permission, and installer work |
+| Linux (x86_64) | ⏳ Planned | Distribution targets and packaging format still to be decided |
+| iOS | ⏳ Planned | Mobile needs a redesigned interaction, file access, and backup model |
+| Android | ⏳ Planned | Mobile needs a redesigned interaction, file access, and backup model |
+
+No platform other than macOS Apple Silicon is **downloadable or runnable** at this time. If support for another platform begins, this list and the release notes will be updated before any installer is published.
+
 ## Download and install
 
 ### System requirements
