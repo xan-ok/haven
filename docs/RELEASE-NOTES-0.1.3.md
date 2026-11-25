@@ -2,8 +2,8 @@
 
 - **版本**：v0.1.3
 - **发布日期**：2026-11-25
-- **Git Tag**：`v0.1.3`（指向 commit `c4a8e3a`）
-- **Git Commit**：`c4a8e3aa4435d8a8483d73896bd2341c22a30238`
+- **Git Tag**：`v0.1.3`
+- **构建源码提交**：`c4a8e3aa4435d8a8483d73896bd2341c22a30238`
 - **平台**：macOS Apple Silicon（arm64）
 - **基线**：v0.1.2（`24e2410aa1975b29285b2f0b91e7bfd95e6f7865`）
 - **下载**：https://github.com/xan-ok/haven/releases/tag/v0.1.3

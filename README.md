@@ -1,5 +1,7 @@
 # Haven
 
+[English](README.en.md) · **简体中文**
+
 离线优先的个人文件加密与隐私管理桌面应用。数据保存在本机，不上传、不同步、无需联网。
 
 > **当前正式发布版本：Haven v0.1.3**，支持 **macOS Apple Silicon（arm64）**。
@@ -52,7 +54,7 @@
 | 大小 | 6.11 MiB |
 | SHA-256 | `d7e0e15873b9091253b1eeb5276f88a001b525fd324a97f205af932e65f3ba6f` |
 | Git Tag | `v0.1.3` |
-| Git Commit | `c4a8e3aa4435d8a8483d73896bd2341c22a30238` |
+| 构建源码提交 | `c4a8e3aa4435d8a8483d73896bd2341c22a30238` |
 | 构建时间 | 2026-11-25T15:34:52 |
 | 下载地址 | https://github.com/xan-ok/haven/releases/tag/v0.1.3 |
 
