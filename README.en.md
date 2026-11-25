@@ -30,7 +30,7 @@ Implemented:
 Not implemented or not supported:
 
 - Developer ID signing and Apple notarization (the build machine has no certificate and no notarytool credentials)
-- Intel / Universal builds, Windows, Linux
+- Intel / Universal builds, Linux (not supported, no plans at this time)
 - Vaults on network volumes
 - Master password change or recovery, trash bin, cloud sync
 
@@ -41,9 +41,7 @@ The platforms below are **not developed yet**. This is a backlog record only: wo
 | Platform | Status | Notes |
 |---|---|---|
 | macOS Apple Silicon (arm64) | ✅ Supported | Stable release in v0.1.3; the only usable platform today |
-| macOS Intel (x86_64) / Universal | ⏳ Planned | Needs verification on Intel hardware or a cross-compilation setup |
 | Windows (x86_64) | ⏳ Planned | Needs Windows-specific path, permission, and installer work |
-| Linux (x86_64) | ⏳ Planned | Distribution targets and packaging format still to be decided |
 | iOS | ⏳ Planned | Mobile needs a redesigned interaction, file access, and backup model |
 | Android | ⏳ Planned | Mobile needs a redesigned interaction, file access, and backup model |
 

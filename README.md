@@ -32,7 +32,7 @@
 未实现或不支持：
 
 - Developer ID 签名与 Apple 公证（当前构建环境缺少证书与 notarytool 凭据）
-- Intel / Universal 架构、Windows、Linux
+- Intel / Universal 架构、Linux（当前不支持，暂无支持计划）
 - 网络卷上的保险库
 - 主密码修改与找回、回收站、云同步
 
@@ -43,9 +43,7 @@
 | 平台 | 状态 | 说明 |
 |---|---|---|
 | macOS Apple Silicon（arm64） | ✅ 已支持 | v0.1.3 正式发布，当前唯一可用平台 |
-| macOS Intel（x86_64） / Universal | ⏳ 待开发支持 | 需在 Intel 机器或交叉编译环境验证 |
 | Windows（x86_64） | ⏳ 待开发支持 | 需实现 Windows 的路径、权限与安装包流程 |
-| Linux（x86_64） | ⏳ 待开发支持 | 需确定发行版与打包格式 |
 | iOS | ⏳ 待开发支持 | 移动端需重新设计交互、文件访问与备份模型 |
 | Android | ⏳ 待开发支持 | 移动端需重新设计交互、文件访问与备份模型 |
 
