@@ -2,14 +2,15 @@
 
 离线优先的个人文件加密与隐私管理桌面应用。数据保存在本机，不上传、不同步、无需联网。
 
-> 当前为 **Haven 0.1.3 内部测试版**，仅提供 **macOS Apple Silicon（arm64）** 安装包。
-> 当前安装包**未使用 Developer ID 签名，也未经过 Apple 公证**，Gatekeeper 可能拒绝运行，详见[发布说明](docs/RELEASE-NOTES-0.1.3.md)。
+> **当前正式发布版本：Haven v0.1.3**，支持 **macOS Apple Silicon（arm64）**。
+> 当前安装包**未使用 Developer ID 签名，也未经过 Apple 公证**，Gatekeeper 可能拒绝运行，详见[安装说明](#下载与安装)。
 
+- 产品官网：https://37lur66wyyzfjjex5tg.traesite.cn/
+- GitHub Releases：https://github.com/xan-ok/haven/releases/tag/v0.1.3
+- Git Tag：`v0.1.3`
 - 产品需求文档：[docs/Haven-PRD-产品需求分析-v0.2.md](docs/Haven-PRD-产品需求分析-v0.2.md)
 - 0.1.3 发布说明：[docs/RELEASE-NOTES-0.1.3.md](docs/RELEASE-NOTES-0.1.3.md)
-- 0.1.2 发布说明：[docs/RELEASE-NOTES-0.1.2.md](docs/RELEASE-NOTES-0.1.2.md)
-- 0.1.1 发布说明：[docs/RELEASE-NOTES-0.1.1.md](docs/RELEASE-NOTES-0.1.1.md)
-- 0.1.0 发布说明：[docs/RELEASE-NOTES-0.1.0.md](docs/RELEASE-NOTES-0.1.0.md)
+- 变更记录：[CHANGELOG.md](CHANGELOG.md)
 - 开发约束：[AGENTS.md](AGENTS.md)
 
 ## 当前实现范围
@@ -24,30 +25,62 @@
 - 图片（JPG/PNG）、PDF、视频（MP4/MOV/M4V/WebM）内存解密预览
 - 单文件、批量、文件夹导出，并给出未加密副本警告
 - 保险库备份与从备份恢复
+- 主题中心：6 套内置主题即时切换，支持导入 / 预览 / 应用 / 删除 `.haventheme` 自定义主题，损坏自动回退
 
 未实现或不支持：
 
-- Developer ID 签名与 Apple 公证
+- Developer ID 签名与 Apple 公证（当前构建环境缺少证书与 notarytool 凭据）
 - Intel / Universal 架构、Windows、Linux
 - 网络卷上的保险库
 - 主密码修改与找回、回收站、云同步
 
-## 下载与安装（内部测试）
+## 下载与安装
 
-0.1.3 安装包待构建发布；当前可用的最新安装包为 0.1.2（macOS Apple Silicon arm64）：
+### 系统要求
 
+- macOS Apple Silicon（M1 / M2 / M3 / M4），macOS 13 Ventura 及以上
+- Intel Mac、Windows、Linux 当前不支持
+
+### 下载
+
+**Haven v0.1.3** 正式发布：
+
+| 项目 | 值 |
+|---|---|
+| 文件名 | `Haven_0.1.3_aarch64.dmg` |
+| 架构 | arm64 |
+| 大小 | 6.11 MiB |
+| SHA-256 | `d7e0e15873b9091253b1eeb5276f88a001b525fd324a97f205af932e65f3ba6f` |
+| Git Tag | `v0.1.3` |
+| Git Commit | `c4a8e3aa4435d8a8483d73896bd2341c22a30238` |
+| 构建时间 | 2026-11-25T15:34:52 |
+| 下载地址 | https://github.com/xan-ok/haven/releases/tag/v0.1.3 |
+
+### 完整性校验
+
+下载后在终端运行（macOS 自带 `shasum`）：
+
+```bash
+shasum -a 256 Haven_0.1.3_aarch64.dmg
 ```
-Haven_0.1.2_aarch64.dmg
-SHA-256: 9ab7698616afbdeb1476df0c2668ccb89a9658703554a8e7b4c2bbd8a6745637
-```
 
-安装步骤：
+输出必须与上方 SHA-256 完全一致。
 
-1. 打开 DMG，将 `Haven.app` 拖入「应用程序」。
-2. 当前包未签名、未公证。若系统提示“无法验证开发者”或拒绝打开，请确认文件来源可信后，在访达中右键点击 `Haven.app` 选择「打开」，或在「系统设置 → 隐私与安全性」中允许本次打开。
-3. **不要关闭系统完整性保护或全局 Gatekeeper。**
+### 安装步骤
 
-注意：带 quarantine 属性的当前安装包可能被 Gatekeeper 拒绝运行，**不能保证双击即可打开**。这是内部测试版的已知限制，正式发布前会补签名与公证。
+1. 从 GitHub Releases 下载 `Haven_0.1.3_aarch64.dmg`，校验 SHA-256。
+2. 打开 DMG，将 `Haven.app` 拖入「应用程序」。
+3. 当前包**未签名、未公证**。首次打开时系统会提示「无法验证开发者」。在访达中右键点击 `Haven.app` → 选择「打开」→ 确认打开。
+
+**不要关闭系统完整性保护（SIP）或全局 Gatekeeper**。仅为 Haven 这一个应用放行即可。
+
+### 安装包状态（诚实说明）
+
+- **签名**：未使用 Developer ID Application 签名（构建机未安装 Apple Developer 证书）。
+- **公证**：未经过 Apple 公证（构建机未配置 notarytool 凭据）。
+- **Gatekeeper**：首次打开会被拒绝，用户必须手动允许。
+
+---
 
 ## 基本使用
 
@@ -88,11 +121,20 @@ SHA-256: 9ab7698616afbdeb1476df0c2668ccb89a9658703554a8e7b4c2bbd8a6745637
 - 「恢复保险库」或锁定页的「从备份恢复」：选择备份目录 → 输入创建该备份时的主密码完成验证 → 选择恢复位置，Haven 会在其中创建新的「我的保险库」。
 - 恢复不会覆盖或替换原有保险库。
 
+### 主题切换
+
+- 已解锁界面点击顶部「外观」按钮打开主题中心。
+- 6 套内置主题即时切换（Haven Original / Snow / Midnight / Forest / Sand / Lavender）。
+- 支持导入 `.haventheme` 自定义主题，导入后先预览再应用；主题文件格式由 Rust 侧校验，拒绝未知字段和脚本。
+- 主题偏好独立于保险库存放，损坏时自动回退 Haven Original。
+
 ### 锁定与退出
 
 - 点击「锁定保险库」立即清理后端主密钥并回到锁定页。
 - 连续 5 分钟无界面操作会自动锁定；导入、导出、预览等长任务不会暂停计时。
 - 关闭窗口即退出应用；再次启动时需要重新输入主密码。
+
+---
 
 ## 安全边界与已知限制
 
@@ -104,6 +146,8 @@ SHA-256: 9ab7698616afbdeb1476df0c2668ccb89a9658703554a8e7b4c2bbd8a6745637
 - 外置磁盘拔出后，Haven **不会实时监听拔盘**；下一次保险库操作才会触发挂载检查与失败关闭，并把会话置为不可用，需要重新连接磁盘并重新输入主密码。
 - 休眠或系统锁屏**不代表 Haven 会立即自动锁定**；自动锁定只由应用内的 5 分钟无操作计时触发。
 - 不提供错误次数锁定；离线暴力破解的主要防线是 Argon2id 的计算成本。
+
+---
 
 ## 技术栈
 
@@ -142,11 +186,11 @@ npm run tauri:build   # macOS .app / .dmg，输出在 src-tauri/target/release/b
 
 ```bash
 npm run build
-npm test                                        # 前端纯函数测试
-cd src-tauri && cargo check
+npm test                                        # 前端纯函数测试（158 项）
+cd src-tauri && cargo check                     # Rust 编译检查
 cd src-tauri && cargo clippy --all-targets -- -D warnings
 cd src-tauri && cargo fmt --check
-cd src-tauri && cargo test                      # Rust 单元测试
+cd src-tauri && cargo test                      # Rust 单元测试（265 项）
 ```
 
 ## 加密与元数据
@@ -171,11 +215,14 @@ cd src-tauri && cargo test                      # Rust 单元测试
 
 位置记忆保存在应用配置目录（macOS 通常为 `~/Library/Application Support/app.haven.desktop/vault-location.json`），其中只有保险库目录路径，不包含密码或密钥。
 
+---
+
 ## 目录结构
 
 ```
 haven/
 ├── docs/                         产品与发布文档
+├── haven-website/                静态产品官网（已部署）
 ├── src/                          前端源码（Vue 3 SFC，JavaScript）
 │   ├── components/               创建、解锁、文件面板、预览与详情组件
 │   ├── lib/                      文件列表、选择、导出、预览、拖拽等前端控制器
@@ -189,21 +236,20 @@ haven/
 │   ├── src/restore.rs            从备份恢复与密码验证
 │   ├── src/export_txn.rs         导出事务与暂存
 │   ├── src/export_staging.rs     导出暂存目录与卷一致性检查
+│   ├── src/theme_store.rs        主题中心存储与校验
 │   └── capabilities/             权限配置（最小权限）
+├── CHANGELOG.md                  变更记录
 ├── AGENTS.md                     开发约束
 └── README.md
 ```
 
-## 当前状态
+---
 
-0.1.3 为内部测试版，新增「主题中心」：6 套内置主题即时切换，支持导入 / 预览 / 应用 / 删除自定义主题，
-主题与保险库完全隔离，损坏自动回退；验证记录见
-[docs/acceptance/20261125-theme-center/](docs/acceptance/20261125-theme-center/)。
-0.1.2 为内部测试版，调整已解锁界面布局：文件列表占满剩余窗口高度，顶部信息压缩为紧凑单行工具栏，
-窗口较小时内容可正常滚动；验证记录见
-[docs/acceptance/20261125-layout-fix/](docs/acceptance/20261125-layout-fix/)。
-0.1.1 为内部测试版，在 0.1.0 基础上修复了「保险库不可用」页无法创建新保险库的问题，
-验证记录见 [docs/acceptance/20261125-fix-unavailable-create/](docs/acceptance/20261125-fix-unavailable-create/)。
-0.1.0 已完成最终安装包冒烟测试（12 项全部通过），报告见
-[docs/acceptance/20261124-final-smoke/](docs/acceptance/20261124-final-smoke/)。
-当前暂未打正式发布 Tag。
+## 版本历史
+
+| 版本 | Git Tag | 说明 |
+|---|---|---|
+| v0.1.3 | `v0.1.3` | **当前正式发布**。主题中心：6 套内置主题，支持导入自定义 `.haventheme`，主题与保险库完全隔离，损坏自动回退。 |
+| v0.1.2 | `v0.1.2` | 内部测试版。调整已解锁界面布局：文件列表占满剩余窗口高度，顶部工具栏紧凑化。 |
+| v0.1.1 | `v0.1.1` | 内部测试版。修复「保险库不可用」页无法创建新保险库的问题。 |
+| v0.1.0 | `v0.1.0` | 内部测试版。核心保险库功能：创建、导入、加密、预览、备份、恢复全部交付。 |

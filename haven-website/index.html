@@ -447,29 +447,71 @@
   <div class="section__inner">
     <div class="section__head reveal">
       <div class="section__eyebrow" data-i18n-key="dl.eyebrow">下载</div>
-      <h2 class="section__title" data-i18n-key="dl.title">内部测试，暂未正式发布。</h2>
-      <p class="section__lead" data-i18n-key="dl.lead">Haven 当前还在开发阶段，最新公开可用版本为 <strong>0.1.3 内部测试版</strong>。</p>
+      <h2 class="section__title" data-i18n-key="dl.title">Haven v0.1.3 正式发布。</h2>
+      <p class="section__lead" data-i18n-key="dl.lead">Haven v0.1.3 是当前稳定版本，支持 <strong>macOS Apple Silicon（arm64）</strong>。安装包 <strong>已构建但未签名、未公证</strong>，Gatekeeper 首次打开会拒绝。</p>
     </div>
 
     <div class="dl-card reveal">
-      <span class="dl-card__tag" data-i18n-key="dl.eyebrow">内部测试</span>
-      <h3>Haven <span data-i18n-key="dl.version">0.1.3</span> <small data-i18n-key="dl.version-label">· 源代码版本</small></h3>
+      <span class="dl-card__tag dl-card__tag--stable">Stable</span>
+      <h3>Haven <span data-i18n-key="dl.version">0.1.3</span></h3>
       <p data-i18n-key="dl.platform">macOS Apple Silicon（arm64）</p>
-      <div class="dl-card__source">
-        <div class="dl-card__source-row">
-          <span class="dl-card__source-label" data-i18n-key="dl.source.src">源码</span>
-          <span class="dl-card__source-value"><code>v0.1.3</code></span>
+
+      <div class="dl-card__meta">
+        <div class="dl-card__meta-row">
+          <span>Size</span><span data-i18n-key="dl.size">6.11 MiB</span>
         </div>
-        <div class="dl-card__source-row">
-          <span class="dl-card__source-label" data-i18n-key="dl.source.pkg">安装包</span>
-          <span class="dl-card__source-value" data-i18n-key="dl.source.pkg-status">待后续构建发布</span>
+        <div class="dl-card__meta-row">
+          <span>Architecture</span><span data-i18n-key="dl.arch">arm64</span>
+        </div>
+        <div class="dl-card__meta-row">
+          <span>Build</span><span data-i18n-key="dl.build">2026-11-25T15:34:52 CST</span>
+        </div>
+        <div class="dl-card__meta-row">
+          <span>Git Tag</span><span><code data-i18n-key="dl.tag">v0.1.3</code></span>
+        </div>
+        <div class="dl-card__meta-row">
+          <span>Commit</span><span><code data-i18n-key="dl.commit">c4a8e3aa</code></span>
         </div>
       </div>
+
+      <div class="dl-card__sha">
+        <span class="dl-card__sha-label" data-i18n-key="dl.sha">SHA-256</span>
+        <code class="dl-card__sha-value" data-i18n-key="dl.sha.value">d7e0e15873b9091253b1eeb5276f88a001b525fd324a97f205af932e65f3ba6f</code>
+        <button class="dl-card__sha-copy" onclick="navigator.clipboard?.writeText(this.parentElement.querySelector('.dl-card__sha-value').textContent); this.textContent = this.dataset.copied || 'Copied'; setTimeout(() => this.textContent = this.dataset.label || 'Copy', 1500)"
+          data-label="Copy" data-copied="Copied" data-i18n-key="dl.sha.copied">Copy</button>
+      </div>
+
+      <div class="dl-card__status">
+        <div class="dl-card__status-row">
+          <span data-i18n-key="dl.status.signed">签名</span>
+          <span data-i18n-key="dl.status.signed.no">❌ 未签名</span>
+        </div>
+        <div class="dl-card__status-row">
+          <span data-i18n-key="dl.status.notarized">公证</span>
+          <span data-i18n-key="dl.status.notarized.no">❌ 未公证</span>
+        </div>
+        <div class="dl-card__status-row">
+          <span data-i18n-key="dl.status.gatekeeper">Gatekeeper</span>
+          <span data-i18n-key="dl.status.gatekeeper.hint">首次打开会被拒绝</span>
+        </div>
+      </div>
+
+      <div class="dl-card__install">
+        <strong data-i18n-key="dl.install.title">安装说明</strong>
+        <ol>
+          <li data-i18n-key="dl.install.step1">下载 DMG，校验 SHA-256。</li>
+          <li data-i18n-key="dl.install.step2">打开 DMG，拖入「应用程序」。</li>
+          <li data-i18n-key="dl.install.step3">首次打开：右键 → 打开。</li>
+        </ol>
+        <small data-i18n-key="dl.install.hint">不要关闭系统完整性保护。</small>
+      </div>
+
       <div class="dl-card__warning" data-i18n-key="dl.warning"></div>
-      <div class="dl-card__secondary">
-        <a class="btn btn--outline" href="https://github.com/xan-ok/haven" target="_blank" rel="noopener" data-i18n-key="dl.btn.github-src">GitHub 仓库</a>
-        <a class="btn btn--outline" href="https://github.com/xan-ok/haven/releases" target="_blank" rel="noopener" data-i18n-key="dl.btn.github-releases">GitHub Releases · 暂无正式发布</a>
-        <a class="btn btn--outline" href="https://github.com/xan-ok/haven/blob/main/docs/RELEASE-NOTES-0.1.3.md" target="_blank" rel="noopener">0.1.3 Release Notes</a>
+
+      <div class="dl-card__cta">
+        <a class="btn btn--primary" href="https://github.com/xan-ok/haven/releases/tag/v0.1.3" target="_blank" rel="noopener" data-i18n-key="dl.btn.github">GitHub Releases</a>
+        <a class="btn btn--outline" href="https://github.com/xan-ok/haven" target="_blank" rel="noopener" data-i18n-key="dl.btn.repo">GitHub 仓库</a>
+        <a class="btn btn--outline" href="https://github.com/xan-ok/haven/blob/main/docs/RELEASE-NOTES-0.1.3.md" target="_blank" rel="noopener" data-i18n-key="dl.btn.notes">Release Notes</a>
       </div>
     </div>
   </div>
